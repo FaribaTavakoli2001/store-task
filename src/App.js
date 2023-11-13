@@ -1,22 +1,25 @@
 import './App.css';
-import Store from './components/Store';
-import { Switch , Route , Redirect } from 'react-router-dom';
-import ProductsDitails from './components/ProductsDitails';
+import { Route, Switch, Redirect } from "react-router-dom";
 
-import ProductsContextProvider from './context/ProductContextProvider';
+// Components
+import Store from './components/Store';
+import ProductDetails from './components/ProductsDitails';
+
+// Context
+import ProductContextProvider from './context/ProductContextProvider';
+import CartContextProvider, { CartCaontext } from './context/CartContextProvider';
 
 function App() {
   return (
-    
-      <ProductsContextProvider>
-      <Switch>
-       <Route path='/products/:id' component={ProductsDitails}/>
-       <Route path='/products' component={Store} />
-      <Redirect to='/products' />
-       </Switch>
-    </ProductsContextProvider>
-    
-    
+    <ProductContextProvider>
+      <CartContextProvider>
+        <Switch>
+          <Route path="/products/:id" component={ProductDetails} />
+          <Route path="/products" component={Store} />
+          <Redirect to="/products" />
+        </Switch>
+      </CartContextProvider>
+    </ProductContextProvider>
   );
 }
 
